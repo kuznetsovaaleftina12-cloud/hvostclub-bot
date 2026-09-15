@@ -1,0 +1,182 @@
+{\rtf1\ansi\ansicpg1251\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 AppleColorEmoji;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f0\fs26 \cf0 from telegram import ReplyKeyboardMarkup, Update\
+from telegram.ext import (\
+    Application,\
+    CommandHandler,\
+    MessageHandler,\
+    ConversationHandler,\
+    ContextTypes,\
+    filters,\
+)\
+\
+BOT_TOKEN = "8967126323:AAH9wrDKK0EhK2l5q_8CE7dyCgqYJms8qUE"\
+ADMIN_ID = 688966791\
+\
+(\
+    NAME,\
+    PHONE,\
+    DOG_NAME,\
+    BREED,\
+    AGE,\
+    WEIGHT,\
+    SERVICE,\
+    NOTES,\
+) = range(8)\
+\
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):\
+    keyboard = [["
+\f1 \uc0\u55357 \u56382 
+\f0  \uc0\u1047 \u1072 \u1087 \u1080 \u1089 \u1072 \u1090 \u1100 \u1089 \u1103  \u1085 \u1072  \u1079 \u1085 \u1072 \u1082 \u1086 \u1084 \u1089 \u1090 \u1074 \u1086 "]]\
+    await update.message.reply_text(\
+        "\uc0\u1044 \u1086 \u1073 \u1088 \u1086  \u1087 \u1086 \u1078 \u1072 \u1083 \u1086 \u1074 \u1072 \u1090 \u1100  \u1074  \u1061 \u1074 \u1086 \u1089 \u1090 \u1072 \u1090 \u1099 \u1081  \u1082 \u1083 \u1091 \u1073  
+\f1 \uc0\u55357 \u56382 
+\f0 ",\
+        reply_markup=ReplyKeyboardMarkup(\
+            keyboard,\
+            resize_keyboard=True\
+        ),\
+    )\
+\
+async def begin_form(update: Update, context: ContextTypes.DEFAULT_TYPE):\
+    await update.message.reply_text("\uc0\u1050 \u1072 \u1082  \u1074 \u1072 \u1089  \u1079 \u1086 \u1074 \u1091 \u1090 ?")\
+    return NAME\
+\
+async def get_name(update, context):\
+    context.user_data["name"] = update.message.text\
+    await update.message.reply_text("\uc0\u1042 \u1072 \u1096  \u1090 \u1077 \u1083 \u1077 \u1092 \u1086 \u1085 ?")\
+    return PHONE\
+\
+async def get_phone(update, context):\
+    context.user_data["phone"] = update.message.text\
+    await update.message.reply_text("\uc0\u1050 \u1083 \u1080 \u1095 \u1082 \u1072  \u1089 \u1086 \u1073 \u1072 \u1082 \u1080 ?")\
+    return DOG_NAME\
+\
+async def get_dog_name(update, context):\
+    context.user_data["dog_name"] = update.message.text\
+    await update.message.reply_text("\uc0\u1055 \u1086 \u1088 \u1086 \u1076 \u1072 ?")\
+    return BREED\
+\
+async def get_breed(update, context):\
+    context.user_data["breed"] = update.message.text\
+    await update.message.reply_text("\uc0\u1042 \u1086 \u1079 \u1088 \u1072 \u1089 \u1090  \u1089 \u1086 \u1073 \u1072 \u1082 \u1080 ?")\
+    return AGE\
+\
+async def get_age(update, context):\
+    context.user_data["age"] = update.message.text\
+    await update.message.reply_text("\uc0\u1042 \u1077 \u1089  \u1089 \u1086 \u1073 \u1072 \u1082 \u1080 ?")\
+    return WEIGHT\
+\
+async def get_weight(update, context):\
+    context.user_data["weight"] = update.message.text\
+    await update.message.reply_text(\
+        "\uc0\u1050 \u1072 \u1082 \u1072 \u1103  \u1091 \u1089 \u1083 \u1091 \u1075 \u1072  \u1080 \u1085 \u1090 \u1077 \u1088 \u1077 \u1089 \u1091 \u1077 \u1090 ?\\n"\
+        "\uc0\u1044 \u1085 \u1077 \u1074 \u1085 \u1086 \u1081  \u1089 \u1072 \u1076  / \u1055 \u1077 \u1088 \u1077 \u1076 \u1077 \u1088 \u1078 \u1082 \u1072  / \u1048  \u1090 \u1086  \u1080  \u1076 \u1088 \u1091 \u1075 \u1086 \u1077 "\
+    )\
+    return SERVICE\
+\
+async def get_service(update, context):\
+    context.user_data["service"] = update.message.text\
+    await update.message.reply_text(\
+        "\uc0\u1045 \u1089 \u1090 \u1100  \u1083 \u1080  \u1086 \u1089 \u1086 \u1073 \u1077 \u1085 \u1085 \u1086 \u1089 \u1090 \u1080  \u1093 \u1072 \u1088 \u1072 \u1082 \u1090 \u1077 \u1088 \u1072 , \u1087 \u1086 \u1074 \u1077 \u1076 \u1077 \u1085 \u1080 \u1103  \u1080 \u1083 \u1080  \u1079 \u1076 \u1086 \u1088 \u1086 \u1074 \u1100 \u1103 ?"\
+    )\
+    return NOTES\
+\
+async def finish(update, context):\
+    context.user_data["notes"] = update.message.text\
+\
+    text = f"""\
+
+\f1 \uc0\u55357 \u56382 
+\f0  \uc0\u1053 \u1086 \u1074 \u1072 \u1103  \u1079 \u1072 \u1103 \u1074 \u1082 \u1072 \
+\
+
+\f1 \uc0\u55357 \u56420 
+\f0  \uc0\u1042 \u1083 \u1072 \u1076 \u1077 \u1083 \u1077 \u1094 : \{context.user_data['name']\}\
+
+\f1 \uc0\u55357 \u56542 
+\f0  \uc0\u1058 \u1077 \u1083 \u1077 \u1092 \u1086 \u1085 : \{context.user_data['phone']\}\
+\
+
+\f1 \uc0\u55357 \u56374 
+\f0  \uc0\u1050 \u1083 \u1080 \u1095 \u1082 \u1072 : \{context.user_data['dog_name']\}\
+
+\f1 \uc0\u55357 \u56341 
+\f0  \uc0\u1055 \u1086 \u1088 \u1086 \u1076 \u1072 : \{context.user_data['breed']\}\
+
+\f1 \uc0\u55356 \u57218 
+\f0  \uc0\u1042 \u1086 \u1079 \u1088 \u1072 \u1089 \u1090 : \{context.user_data['age']\}\
+
+\f1 \uc0\u9878 \u65039 
+\f0  \uc0\u1042 \u1077 \u1089 : \{context.user_data['weight']\}\
+\
+
+\f1 \uc0\u55357 \u56524 
+\f0  \uc0\u1059 \u1089 \u1083 \u1091 \u1075 \u1072 : \{context.user_data['service']\}\
+\
+
+\f1 \uc0\u55357 \u56541 
+\f0  \uc0\u1054 \u1089 \u1086 \u1073 \u1077 \u1085 \u1085 \u1086 \u1089 \u1090 \u1080 :\
+\{context.user_data['notes']\}\
+"""\
+\
+    await context.bot.send_message(\
+        chat_id=ADMIN_ID,\
+        text=text,\
+    )\
+\
+    await update.message.reply_text(\
+        "\uc0\u1057 \u1087 \u1072 \u1089 \u1080 \u1073 \u1086 ! \u1052 \u1099  \u1087 \u1086 \u1083 \u1091 \u1095 \u1080 \u1083 \u1080  \u1079 \u1072 \u1103 \u1074 \u1082 \u1091  \u1080  \u1089 \u1082 \u1086 \u1088 \u1086  \u1089 \u1074 \u1103 \u1078 \u1077 \u1084 \u1089 \u1103  \u1089  \u1074 \u1072 \u1084 \u1080  
+\f1 \uc0\u55357 \u56382 
+\f0 "\
+    )\
+\
+    return ConversationHandler.END\
+\
+def main():\
+    app = Application.builder().token(BOT_TOKEN).build()\
+\
+    conv = ConversationHandler(\
+        entry_points=[\
+            MessageHandler(\
+                filters.Regex("^
+\f1 \uc0\u55357 \u56382 
+\f0  \uc0\u1047 \u1072 \u1087 \u1080 \u1089 \u1072 \u1090 \u1100 \u1089 \u1103  \u1085 \u1072  \u1079 \u1085 \u1072 \u1082 \u1086 \u1084 \u1089 \u1090 \u1074 \u1086 $"),\
+                begin_form\
+            )\
+        ],\
+        states=\{\
+            NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_name)],\
+            PHONE: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_phone)],\
+            DOG_NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_dog_name)],\
+            BREED: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_breed)],\
+            AGE: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_age)],\
+            WEIGHT: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_weight)],\
+            SERVICE: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_service)],\
+            NOTES: [MessageHandler(filters.TEXT & ~filters.COMMAND, finish)],\
+        \},\
+        fallbacks=[],\
+    )\
+\
+    app.add_handler(CommandHandler("start", start))\
+    app.add_handler(conv)\
+\
+    app.run_polling()\
+\
+if __name__ == "__main__":\
+    main()\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+\
+\
+\
+\
+}
