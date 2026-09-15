@@ -8,7 +8,7 @@ from telegram.ext import (
     filters,
 )
 
-BOT_TOKEN = "8967126323:AAEK21B0MpsoNmi8t_kS0hjmG2f2H5Q1S2g"
+BOT_TOKEN = "8967126323:AAHwsKAMzNRi-guWOrIQhlS30S4qYWQ2h-M"
 ADMIN_ID = 688966791
 
 (
